@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>나만의 미니 폰</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+      font-family: sans-serif;
+    }
+    .phone-frame {
+      width: 320px;
+      height: 600px;
+      background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+      border: 12px solid #222;
+      border-radius: 40px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 30px;
+    }
+    .app-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      text-align: center;
+    }
+    .app-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+    }
+    .app-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.1s;
+    }
+    .app-icon:active { transform: scale(0.9); }
+    .app-name {
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #222;
+    }
+    /* 앱 열렸을 때 화면 */
+    #app-screen {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: white;
+      border-radius: 28px;
+      padding: 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hidden { display: none !important; }
+    .close-btn {
+      padding: 10px 25px;
+      background: #333;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="phone-frame">
+    <div class="status-bar">
+      <span>19:15</span>
+      <span>5G 🔋 100%</span>
+    </div>
+
+    <div class="app-grid">
+      <div class="app-item" onclick="openApp('메시지', '안녕! 나만의 웹 스마트폰에 온 걸 환영해 👋')">
+        <div class="app-icon">💬</div>
+        <span class="app-name">메시지</span>
+      </div>
+      <div class="app-item" onclick="openApp('메모장', '여기에 원하는 글이나 일기를 채워 넣을 수 있어요!')">
+        <div class="app-icon">📝</div>
+        <span class="app-name">메모장</span>
+      </div>
+      <div class="app-item" onclick="openApp('음악', '🎵 현재 재생 중: 좋아하는 노래')">
+        <div class="app-icon">🎧</div>
+        <span class="app-name">음악</span>
+      </div>
+    </div>
+
+    <!-- 앱 화면 -->
+    <div id="app-screen" class="hidden">
+      <h2 id="app-title">앱 제목</h2>
+      <p id="app-content" style="text-align: center; line-height: 1.6;">내용</p>
+      <button class="close-btn" onclick="closeApp()">홈으로 돌아가기</button>
+    </div>
+  </div>
+
+  <script>
+    function openApp(title, content) {
+      document.getElementById('app-title').innerText = title;
+      document.getElementById('app-content').innerText = content;
+      document.getElementById('app-screen').classList.remove('hidden');
+    }
+    function closeApp() {
+      document.getElementById('app-screen').classList.add('hidden');
+    }
+  </script>
+
+</body>
+</html>
